@@ -24,7 +24,7 @@ services:
 
   backend:
     build: ./backend
-    container_name: books-backend
+    #container_name: books-backend
     environment:
       DB_HOST: db
       DB_PORT: 5432
