@@ -1,0 +1,31 @@
+- hosts: app
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        name:
+          - docker.io
+          - git
+        update_cache: yes
+
+    - name: Enable Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Clone repo
+      git:
+        repo: https://github.com/<you>/<repo>.git
+        dest: /opt/books-app
+
+    - name: Run application
+      shell: |
+        cd /opt/books-app/books-app
+        docker compose up -d --build
