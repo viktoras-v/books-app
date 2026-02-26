@@ -8,6 +8,7 @@
         name:
           - docker.io
           - git
+          - docker-compose
         update_cache: yes
 
     - name: Enable Docker
@@ -30,4 +31,4 @@
     - name: Run application
       shell: |
         cd /opt/books-app/books-app
-        docker compose up -d --build
+        docker-compose up 
