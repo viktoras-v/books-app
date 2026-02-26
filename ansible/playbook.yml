@@ -9,8 +9,19 @@
         name:
           - docker.io
           - git
-          - docker-compose
         update_cache: yes
+
+    - name: Create cli-plugins directory
+      file:
+        path: /usr/local/lib/docker/cli-plugins
+        state: directory
+        mode: 0755
+
+    - name: Download Docker Compose v2
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.23.1/docker-compose-linux-x86_64
+        dest: /usr/local/lib/docker/cli-plugins/docker-compose
+        mode: '0755'
 
     - name: Enable Docker
       systemd:
@@ -26,10 +37,11 @@
 
     - name: Clone repo
       git:
-        repo: https://github.com/viktoras-v/books-app.git         
+        repo: https://github.com/viktoras-v/books-app.git
         dest: /opt/books-app
+        force: yes
 
     - name: Run application
-      shell: |
-        cd /opt/books-app/
-        docker-compose up 
+      shell: docker compose up -d --build
+      args:
+        chdir: /opt/books-app
