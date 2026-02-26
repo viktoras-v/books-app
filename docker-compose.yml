@@ -10,6 +10,8 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
       - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+    networks:
+      - booksnet
     ports:
       - "5432:5432"
     healthcheck:
@@ -27,6 +29,8 @@ services:
       DB_NAME: booksdb
       DB_USER: booksuser
       DB_PASSWORD: bookspass
+    networks:
+      - booksnet
     ports:
       - "5000:5000"
     depends_on:
@@ -36,6 +40,8 @@ services:
   frontend:
     build: ./frontend
     container_name: books-frontend
+  networks:
+      - booksnet
     ports:
       - "8080:80"
     depends_on:
@@ -43,3 +49,7 @@ services:
 
 volumes:
   db_data:
+
+networks:
+  booksnet:
+    driver: bridge
