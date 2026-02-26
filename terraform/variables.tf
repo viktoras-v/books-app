@@ -6,7 +6,7 @@ variable "region" {
 #variable "az" {
 #  type    = string
 #  default = "eu-central-1a"
-}
+#}
 
 #variable "ami_id" {
 #  type = string
