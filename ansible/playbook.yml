@@ -24,16 +24,8 @@
 
     - name: Clone repo
       git:
-        repo: https://github.com/viktoras-v/book-app.git
+        repo: https://github.com/viktoras-v/books-app.git         
         dest: /opt/books-app
-        version: main
-        force: yes
-        accept_hostkey: yes
-
- #   - name: Clone repo
- #     git:
- #       repo: https://github.com/viktoras-v/book-app.git
- #       dest: /opt/books-app
 
     - name: Run application
       shell: |
