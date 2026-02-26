@@ -1,28 +1,38 @@
-# Firebase build and deployment files
-/firebase-debug.log
-/firebase-debug.*.log
-.firebaserc
-
-# Firebase Hosting
-/firebase.json
-*.cache
-hosting/.cache
-
-# Firebase Functions
-/functions/node_modules/
-/functions/.env
-/functions/package-lock.json
-
-# Firebase Emulators
-/firebase-*.zip
-/.firebase/
-/emulator-ui/
-
-# Logs
+node_modules
+.terraform/
+*.tfplan
+*.tfstate
+*.tfstate.*
+*.plan
+.terraform.lock.hcl
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+lib/
+lib64/
+include/
+share/
+bin/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment files (local configs)
-/.env.*
+env_*/
+*.tar.gz
+dist/
+*.egg-info/
+.aws-sam/
