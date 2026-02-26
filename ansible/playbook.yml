@@ -30,5 +30,5 @@
 
     - name: Run application
       shell: |
-        cd /opt/books-app/books-app
+        cd /opt/books-app/
         docker-compose up 
