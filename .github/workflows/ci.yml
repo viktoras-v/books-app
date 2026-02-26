@@ -49,7 +49,7 @@ jobs:
 
     - name: Run Ansible
       run: |
-        ansible-playbook ansible/playbook.yml \
+        ansible-playbook -u ubuntu ansible/playbook.yml \
         -i "${{ steps.tf.outputs.ip }},"
 
         - name: Checkout repo
