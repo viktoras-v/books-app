@@ -3,7 +3,8 @@ name: Infra + Deploy
 on:
   push:
     branches: [ main ]
-
+  workflow_dispatch:
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,19 +27,19 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - name: Get EC2 IP
-      id: tf
-      run: |
-        echo "ip=$(terraform output -raw public_ip)" >> $GITHUB_OUTPUT
-      working-directory: terraform
+    #- name: Get EC2 IP
+    #  id: tf
+    ##  run: |
+     #   echo "ip=$(terraform output -raw public_ip)" >> $GITHUB_OUTPUT
+     # working-directory: terraform
 
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+   # - name: Setup SSH
+   #   run: |
+   #     mkdir -p ~/.ssh
+   #     echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
+   #     chmod 600 ~/.ssh/id_rsa
 
-    - name: Run Ansible
-      run: |
-        ansible-playbook ansible/site.yml \
-        -i "${{ steps.tf.outputs.ip }},"
+   # - name: Run Ansible
+   #   run: |
+   #     ansible-playbook ansible/playbook.yml \
+   #     -i "${{ steps.tf.outputs.ip }},"
