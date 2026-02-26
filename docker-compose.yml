@@ -3,7 +3,7 @@ version: "3.9"
 services:
   db:
     image: postgres:16-alpine
-   # container_name: booksdb
+   container_name: booksdb
     environment:
       POSTGRES_DB: booksdb
       POSTGRES_USER: booksuser
@@ -12,8 +12,7 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
       - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
-    networks:
-      - booksnet
+   
     ports:
       - "5432:5432"
     healthcheck:
@@ -24,15 +23,14 @@ services:
 
   backend:
     build: ./backend
-    #container_name: books-backend
+    container_name: books-backend
     environment:
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: booksdb
       DB_USER: booksuser
       DB_PASSWORD: bookspass
-    networks:
-      - booksnet
+    
     ports:
       - "5000:5000"
     depends_on:
@@ -41,7 +39,7 @@ services:
 
   frontend:
     build: ./frontend
-   # container_name: books-frontend
+    container_name: books-frontend
     networks:
       - booksnet
     ports:
@@ -52,6 +50,3 @@ services:
 volumes:
   db_data:
 
-networks:
-  booksnet:
-    driver: bridge
