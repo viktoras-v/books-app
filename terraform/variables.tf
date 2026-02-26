@@ -25,7 +25,7 @@ variable "region" {
 #  default = "10.0.0.0/16"
 #}
 
-#3variable "public_subnet_cidr" {
+#variable "public_subnet_cidr" {
 #  type = string
 #  default = "10.0.1.0/24"
 #}
