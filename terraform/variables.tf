@@ -3,6 +3,11 @@ variable "region" {
   default = "eu-central-1"
 }
 
+variable "my_key" {
+  type    = string
+  default = "id_ed25519_book_app.pub"
+}
+
 #variable "az" {
 #  type    = string
 #  default = "eu-central-1a"
