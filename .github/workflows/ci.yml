@@ -51,3 +51,7 @@ jobs:
       run: |
         ansible-playbook ansible/playbook.yml \
         -i "${{ steps.tf.outputs.ip }},"
+
+        - name: Checkout repo
+        uses: actions/checkout@v4
+
