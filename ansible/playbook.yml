@@ -4,6 +4,10 @@
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
+    - name: Wait for SSH to become available
+      wait_for_connection:
+        timeout: 300
+        
     - name: Install packages
       apt:
         name:
@@ -40,7 +44,7 @@
         repo: https://github.com/viktoras-v/books-app.git
         dest: /opt/books-app
         force: yes
-        
+
     - name: Stop and remove existing containers
       shell: docker compose down
       args:
