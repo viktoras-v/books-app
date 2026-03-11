@@ -8,7 +8,7 @@
       apt:
         name:
           - docker.io
-          - git
+#          - git
         update_cache: yes
 
     - name: Create cli-plugins directory
@@ -16,6 +16,12 @@
         path: /usr/local/lib/docker/cli-plugins
         state: directory
         mode: 0755
+
+    - name: Download Docker Compose v2
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.23.1/docker-compose-linux-x86_64
+        dest: /usr/local/lib/docker/cli-plugins/docker-compose
+        mode: '0755'
 
     - name: Enable Docker
       systemd:
@@ -29,15 +35,17 @@
         groups: docker
         append: yes
 
-    - name: Clone repo
-      git:
-        repo: https://github.com/viktoras-v/books-app.git
-        dest: /opt/books-app
-        force: yes
-
+#    - name: Clone repo
+#      git:
+#        repo: https://github.com/viktoras-v/books-app.git
+#        dest: /opt/books-app
+#        force: yes
+    - name: Stop and remove existing containers
+      shell: docker compose down
+      args:
+        chdir: /opt/books-app
         
     - name: Run application
       shell: docker compose up -d --build
       args:
         chdir: /opt/books-app
-        
