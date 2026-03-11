@@ -1,13 +1,13 @@
 - hosts: all
   become: true
-  gather_facts: no
+  gather_facts: false
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
     - name: Wait for SSH to become available
       wait_for_connection:
         timeout: 300
-        
+
     - name: Install packages
       apt:
         name:
