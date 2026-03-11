@@ -27,6 +27,8 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/books-app:backend-${{ github.sha }}
           ${{ secrets.DOCKER_USERNAME }}/books-app:backend-latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
     - name: Build frontend image
       uses: docker/build-push-action@v3
@@ -36,3 +38,5 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/books-app:frontend-${{ github.sha }}
           ${{ secrets.DOCKER_USERNAME }}/books-app:frontend-latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max

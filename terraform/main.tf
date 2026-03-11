@@ -76,7 +76,7 @@ resource "aws_security_group" "app" {
 
 resource "aws_key_pair" "my_key" {
   key_name   = "my_key"
-  public_key = file("id_ed25519_book_app.pub")
+  public_key = file("id_ed25519_books.pub")
 }
 
 # EC2 Instance
