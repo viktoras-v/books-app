@@ -41,7 +41,7 @@ services:
 
   frontend:
     build: ./frontend
-   container_name: books-frontend
+    container_name: books-frontend
     networks:
       - booksnet
     ports:
