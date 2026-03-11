@@ -19,9 +19,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_TOKEN }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
     - name: Build backend image
       uses: docker/build-push-action@v3
       with:
@@ -30,8 +27,6 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/books-app:backend-${{ github.sha }}
           ${{ secrets.DOCKER_USERNAME }}/books-app:backend-latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
 
     - name: Build frontend image
       uses: docker/build-push-action@v3
@@ -41,5 +36,3 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/books-app:frontend-${{ github.sha }}
           ${{ secrets.DOCKER_USERNAME }}/books-app:frontend-latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
