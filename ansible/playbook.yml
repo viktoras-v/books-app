@@ -8,7 +8,7 @@
       apt:
         name:
           - docker.io
-#          - git
+          - git
         update_cache: yes
 
     - name: Create cli-plugins directory
@@ -35,11 +35,12 @@
         groups: docker
         append: yes
 
-#    - name: Clone repo
-#      git:
-#        repo: https://github.com/viktoras-v/books-app.git
-#        dest: /opt/books-app
-#        force: yes
+    - name: Clone repo
+      git:
+        repo: https://github.com/viktoras-v/books-app.git
+        dest: /opt/books-app
+        force: yes
+        
     - name: Stop and remove existing containers
       shell: docker compose down
       args:
