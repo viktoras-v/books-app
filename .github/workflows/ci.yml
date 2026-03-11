@@ -24,11 +24,15 @@ jobs:
       with:
         context: ./backend
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/books-backend:${{ github.sha }}
+        tags: |
+          ${{ secrets.DOCKER_USERNAME }}/books-app:backend:${{ github.sha }}
+          ${{ secrets.DOCKER_USERNAME }}/books-app:backend:latest
 
     - name: Build frontend image
       uses: docker/build-push-action@v3
       with:
         context: ./frontend
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/books-frontend:${{ github.sha }}
+        tags: |
+          ${{ secrets.DOCKER_USERNAME }}/books-app:frontend:${{ github.sha }}
+          ${{ secrets.DOCKER_USERNAME }}/books-app:frontend:latest
