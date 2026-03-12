@@ -54,4 +54,5 @@
       shell: docker compose up -d --build
       args:
         chdir: /opt/books-app
+
         
